@@ -1,0 +1,50 @@
+{
+  "name": "site-magnit",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "dev": "next dev --hostname 0.0.0.0",
+    "build": "next build --webpack",
+    "start": "next start --hostname 0.0.0.0",
+    "test": "npm run build && node --test tests/rendered-html.test.mjs && npm run test:image && npm run test:email && npm run test:reviews && npm run test:characteristics",
+    "test:image": "node --experimental-strip-types --test tests/product-image-background.test.mjs",
+    "test:email": "node --experimental-strip-types --test tests/email-notifications.test.mjs",
+    "test:reviews": "node --experimental-strip-types --test tests/reviews.test.mjs",
+    "test:characteristics": "node --experimental-strip-types --test tests/product-characteristics.test.mjs",
+    "test:rendered": "node --test tests/rendered-html.test.mjs",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "db:migrate": "node scripts/migrate.mjs",
+    "db:seed-admin": "node scripts/seed-admin.mjs",
+    "catalog:import": "node scripts/import-tilda.mjs",
+    "backup:storage": "node scripts/backup-storage.mjs"
+  },
+  "dependencies": {
+    "@tiptap/pm": "^3.29.2",
+    "@tiptap/react": "^3.29.2",
+    "@tiptap/starter-kit": "^3.29.2",
+    "dompurify": "^3.4.13",
+    "lucide-react": "^0.468.0",
+    "next": "16.2.6",
+    "nodemailer": "^9.0.5",
+    "pg": "^8.16.3",
+    "react": "19.2.6",
+    "react-dom": "19.2.6"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "4.2.1",
+    "@types/node": "22.19.19",
+    "@types/nodemailer": "^8.0.1",
+    "@types/pg": "^8.15.5",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "eslint": "9.39.4",
+    "eslint-config-next": "16.2.6",
+    "tailwindcss": "4.2.1",
+    "typescript": "5.9.3"
+  },
+  "type": "module"
+}

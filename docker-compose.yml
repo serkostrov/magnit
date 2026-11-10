@@ -1,0 +1,63 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      HOSTNAME: 0.0.0.0
+      SITE_URL: ${SITE_URL:-https://saitmagnitov.ru}
+      DATABASE_URL: ${DATABASE_URL:-postgresql://${POSTGRES_USER:-site_magnit}:${POSTGRES_PASSWORD:-change-me-before-production}@db:5432/${POSTGRES_DB:-site_magnit}}
+      MOYSKLAD_SYNC_ENABLED: ${MOYSKLAD_SYNC_ENABLED:-false}
+      MOYSKLAD_API_URL: ${MOYSKLAD_API_URL:-https://api.moysklad.ru/api/remap/1.2}
+      MOYSKLAD_API_TOKEN: ${MOYSKLAD_API_TOKEN:-}
+      MOYSKLAD_ACCOUNT_ID: ${MOYSKLAD_ACCOUNT_ID:-}
+      MOYSKLAD_SYNC_INTERVAL_MINUTES: ${MOYSKLAD_SYNC_INTERVAL_MINUTES:-15}
+      MEDIA_STORAGE_DIR: ${MEDIA_STORAGE_DIR:-/app/storage/media}
+      MEDIA_PUBLIC_URL: ${MEDIA_PUBLIC_URL:-/media}
+      CONSENT_VERSION: ${CONSENT_VERSION:-2026-08-04}
+    ports:
+      - "${APP_PORT:-3000}:3000"
+    volumes:
+      - media-data:/app/storage/media
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:3000/api/health').then((r)=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))",
+        ]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-site_magnit}
+      POSTGRES_USER: ${POSTGRES_USER:-site_magnit}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-change-me-before-production}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready -U ${POSTGRES_USER:-site_magnit} -d ${POSTGRES_DB:-site_magnit}",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+
+volumes:
+  postgres-data:
+  media-data:

@@ -1,0 +1,223 @@
+/* Подтверждённые правки созвона 15.07.2026 поверх макета v7.1. */
+.original-home .hero-commerce {
+  min-width: 0;
+}
+
+.original-home .home-marketplaces {
+  margin-top: 14px;
+}
+
+.original-home .home-marketplaces > span {
+  color: rgba(230, 238, 252, 0.72);
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.original-home .home-marketplaces > div {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 10px;
+}
+
+.original-home .home-marketplace {
+  min-height: 62px;
+  border: 1px solid rgba(255, 255, 255, 0.17);
+  border-radius: 14px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 14px;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.original-home .home-marketplace:hover {
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.original-home .home-marketplace.ozon {
+  background: linear-gradient(135deg, #0757f7, #1644c9);
+  box-shadow: 0 12px 30px -18px rgba(7, 87, 247, 0.9);
+}
+
+.original-home .home-marketplace.wb {
+  background: linear-gradient(120deg, #8e23c8, #e62aa7);
+  box-shadow: 0 12px 30px -18px rgba(230, 42, 167, 0.9);
+}
+
+.original-home .home-marketplace b {
+  font-size: 17px;
+  line-height: 1;
+}
+
+.original-home .home-marketplace span {
+  display: flex;
+  flex-direction: column;
+  font-size: 11px;
+  line-height: 1.3;
+}
+
+.original-home .home-marketplace strong {
+  font-size: 14px;
+}
+
+.original-home .home-marketplace i {
+  font-size: 18px;
+  font-style: normal;
+  margin-left: auto;
+}
+
+.original-home .hero-social {
+  column-gap: 18px;
+}
+
+.original-home .hero-social .avs {
+  flex: 0 0 auto;
+  margin-right: 2px;
+}
+
+.original-home .hero-social .rt {
+  min-width: 0;
+}
+
+.original-home .mstage .mag.photo {
+  aspect-ratio: 1;
+  height: auto;
+}
+
+.original-home .spec-chip.no-grade {
+  padding-inline: 17px;
+}
+
+.original-home .cat[data-href] {
+  cursor: pointer;
+}
+
+.original-home .opt-grid h2 {
+  font-size: clamp(28px, 3.3vw, 40px);
+}
+
+.original-home .cat-link {
+  color: var(--blue);
+  font-size: 13px;
+  font-weight: 700;
+  margin-top: 12px;
+}
+
+.original-home .cats .home-tone-blue .ico { background: #eaf1ff; }
+.original-home .cats .home-tone-mint .ico { background: #e6f6f1; }
+.original-home .cats .home-tone-sand .ico { background: #f5efe7; }
+.original-home .cats .home-tone-lilac .ico { background: #f1ecfa; }
+.original-home .cats .home-tone-rose .ico { background: #fbeff1; }
+.original-home .cats .home-tone-cyan .ico { background: #e8f5fa; }
+
+.original-home .cat[data-href]:focus-visible {
+  outline: 3px solid var(--cyan);
+  outline-offset: 3px;
+}
+
+.original-home .cat-badge {
+  align-self: flex-start;
+  background: linear-gradient(135deg, var(--blue), var(--cyan));
+  border-radius: 999px;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+  padding: 4px 8px;
+  text-transform: uppercase;
+}
+
+.original-home .form-consent {
+  color: var(--soft);
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  font-size: 11px;
+  line-height: 1.45;
+  margin: 4px 0 12px;
+}
+
+.original-home .form-consent input {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+  margin: 1px 0 0;
+}
+
+.original-home .form-consent a {
+  color: var(--blue);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.original-home .mini-lead .form-consent {
+  flex: 1 0 100%;
+  margin: 0;
+}
+
+.original-home .mini-lead#lead {
+  scroll-margin-top: 110px;
+}
+
+.original-home .form-status {
+  color: var(--ok);
+  display: none;
+  flex: 1 0 100%;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.original-home form.is-sent .form-status {
+  display: block;
+}
+
+@media (max-width: 980px) {
+  .original-home .home-marketplaces {
+    max-width: 700px;
+    margin-inline: auto;
+  }
+}
+
+@media (max-width: 560px) {
+  .original-home .home-marketplaces > div {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .original-home .home-marketplace {
+    gap: 7px;
+    min-width: 0;
+    padding: 10px;
+  }
+
+  .original-home .home-marketplace b {
+    font-size: 15px;
+  }
+
+  .original-home .home-marketplace span {
+    font-size: 9px;
+    min-width: 0;
+  }
+
+  .original-home .home-marketplace strong {
+    font-size: 11px;
+  }
+
+  .original-home .home-marketplace i {
+    font-size: 15px;
+  }
+
+  .original-home .hero-social {
+    align-items: flex-start;
+    column-gap: 18px;
+  }
+}
